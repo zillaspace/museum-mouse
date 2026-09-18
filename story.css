@@ -1,0 +1,44 @@
+/* The sky sits behind MapLibre's transparent globe exterior. */
+.map-panel{background:#02060d}
+#space-stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity .45s ease}
+#map{z-index:1;background:transparent}
+.map-top,.map-caption,.map-bottom{z-index:2}
+#map-message{z-index:3}
+.map-caption p{max-width:470px}
+.map-caption .space-caption{display:block;max-width:410px;color:#bfccdb;font-size:13px;line-height:1.6;margin-top:10px;letter-spacing:.015em}
+.story-interlude{display:grid;grid-template-columns:160px 1fr;gap:50px;align-items:center;padding:40px 0 55px;border-bottom:1px solid var(--rule)}
+.story-interlude img{display:block;width:160px;height:160px;object-fit:contain}
+.story-interlude blockquote{margin:0;font:400 clamp(24px,2.7vw,37px)/1.4 Georgia,serif;letter-spacing:-.025em;max-width:850px}
+.story-interlude p{max-width:740px;margin-bottom:0}
+.closing{grid-template-columns:280px 1fr;gap:55px}
+.pip-portrait{text-align:center;min-width:0}
+.pip-scene{position:relative;width:100%;aspect-ratio:1;isolation:isolate;overflow:visible}
+.closing .pip-scene>img{display:block;width:100%;height:100%;object-fit:contain;background:transparent;border-radius:0;margin:0}
+.pip-lens{position:absolute;left:35.5%;top:5.5%;width:31%;height:31%;border:4px solid #c9a74b;border-radius:50%;background-color:var(--page);background-image:url('assets/pip.png');background-repeat:no-repeat;box-shadow:0 4px 10px #101a2626,inset 0 0 0 2px #fff9;pointer-events:none;z-index:2}
+.pip-lens:after{content:'';position:absolute;width:8px;height:47%;border-radius:5px;background:linear-gradient(90deg,#86611d,#ddba5c,#9e7628);right:2%;bottom:-36%;transform:rotate(-38deg);transform-origin:top center}
+.pip-lens:before{content:'';position:absolute;inset:6%;border-radius:50%;border-top:2px solid #fff9;pointer-events:none}
+.pip-portrait button,.mouse-study button{border:1px solid #9caabb;border-radius:30px;background:transparent;color:#233950;padding:10px 17px;font-size:12px;line-height:1.4;cursor:pointer}
+.pip-portrait button:disabled{cursor:default;opacity:.6}
+.pip-portrait button{margin-top:16px}
+.pip-scene.is-looking{transform-origin:50% 90%;animation:pip-lean 4.4s ease-in-out}
+@keyframes pip-lean{0%,100%{transform:rotate(0)}30%{transform:rotate(2deg)}70%{transform:rotate(-1deg)}}
+.mouse-sketchbook{margin-top:45px!important}
+.mouse-sketchbook>summary{font-family:Georgia,serif;font-size:24px}
+.sketch-intro{max-width:800px}
+.mouse-studies{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:12px 0 30px}
+.mouse-study{display:grid;grid-template-columns:145px 1fr;gap:22px;align-items:center;padding:27px;border:1px solid var(--rule);border-radius:5px;background:#edf1f4}
+.mouse-study .sketch-art{background:#121311;border-radius:50%;width:145px;height:145px;display:grid;place-items:center;overflow:hidden}
+.sketch-art svg{width:125px;height:125px;overflow:visible}
+.mouse-study h3{font:400 25px/1.2 Georgia,serif;margin-bottom:10px}
+.mouse-study p{font-size:13px;line-height:1.65;margin-top:0}
+.mouse-study .sketch-note{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#875e21;margin-bottom:10px}
+.is-playing .reel-left{transform-origin:62px 58px;animation:reel-turn 2.5s ease-in-out}
+.is-playing .reel-right{transform-origin:138px 58px;animation:reel-turn 2.5s ease-in-out reverse}
+.is-playing .mouse-pin-art{transform-origin:50% 95%;animation:pin-nod 2.5s ease-in-out}
+@keyframes reel-turn{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes pin-nod{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}55%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}
+@media(max-width:1000px){.mouse-study{grid-template-columns:1fr}.closing{grid-template-columns:230px 1fr;gap:30px}}
+@media(max-width:760px){.map-caption .space-caption{font-size:11px;max-width:270px;line-height:1.5;margin-top:7px}.map-caption p{max-width:310px}.story-interlude{grid-template-columns:80px 1fr;gap:20px;padding:25px 0 35px}.story-interlude img{width:80px;height:100px}.story-interlude blockquote{font-size:25px}.story-interlude p{font-size:14px}.closing{grid-template-columns:1fr;gap:30px}.pip-portrait{width:230px;justify-self:center}.closing h2{font-size:38px}.mouse-studies{grid-template-columns:1fr}.mouse-study{grid-template-columns:100px 1fr;padding:20px;gap:20px}.mouse-study .sketch-art{width:100px;height:100px}.sketch-art svg{width:88px;height:88px}.mouse-study h3{font-size:24px}}
+@media(max-width:390px){.mouse-study{grid-template-columns:1fr}.story-interlude{grid-template-columns:1fr}.story-interlude img{width:100px;height:100px}.map-caption .space-caption{max-width:235px}}
+@media(prefers-reduced-motion:reduce){#space-stars{transition:none}.is-playing *,.pip-scene{animation:none!important}}
+@media print{#space-stars,.pip-portrait,.mouse-sketchbook,.story-interlude img{display:none!important}.story-interlude,.closing{display:block}}

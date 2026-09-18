@@ -7,7 +7,7 @@ function calculate(x){
  const totalHours=x.films*x.hours, equivalents=totalHours/x.capacity, seats=Math.ceil(equivalents);
  const factor=x.minutes/5, seconds=x.minutes*60*x.share/100*x.attempts;
  const voiceCredits=Math.ceil(x.films*x.minutes*900*x.languages*3);
- const voice=voiceCredits<=600000?{name:'Pro',cost:99}:voiceCredits<=1800000?{name:'Scale',cost:299}:voiceCredits<=6000000?{name:'Business',cost:990}:{name:'Enterprise estimate — quote required',cost:990*voiceCredits/6000000};
+ const voice=voiceCredits<=600000?{name:'Pro',cost:99}:voiceCredits<=1800000?{name:'Scale',cost:299}:voiceCredits<=6000000?{name:'Business',cost:990}:{name:'Enterprise estimate, quote required',cost:990*voiceCredits/6000000};
  const lines=[
   ['Producer labor',x.hours*x.rate*x.films,`${totalHours.toLocaleString()} hours × $${x.rate}/hour`],
   ['Generated video',seconds*x.videoRate*x.films,`${Math.round(seconds).toLocaleString()} generated seconds / film × $${x.videoRate}/second`],
@@ -16,7 +16,7 @@ function calculate(x){
   ['Additional language review',Math.max(0,x.languages-1)*150*factor*x.films,'$150 / additional language / 5 minutes'],
   ['Access & technical review',150*factor*x.films,'$150 allowance / 5 minutes; specialist versions extra'],
   ['Routine music / rights allowance',100*x.films,'$100 / film; unusual licenses extra'],
-  ['New project asset storage',100*factor*.015*x.films,'100 GB / 5 minutes × $0.015/GB-month'],
+  ['New project asset storage',100*factor*.015*x.films,'100 GB / 5 minutes × $0.015 per GB per month'],
   ['ElevenLabs voice plan',voice.cost,`${voice.name}; ${voiceCredits.toLocaleString()} estimated TTS credits`],
   ['Adobe producer seats',69.99*seats,`${seats} seats × $69.99/month`],
   ['Operations tools allowance',200,'Fixed monthly planning allowance']
@@ -38,7 +38,7 @@ function render(){
  const warnings=[];
  if(y.contribution<0)warnings.push('This scenario does not cover modelled production cost. Increase price, narrow scope, or obtain a subsidy.');
  if(y.voiceCredits>6000000)warnings.push('Voice volume exceeds the published Business allowance; the extrapolated cost needs an enterprise quote.');
- if(x.hours<16)warnings.push('This low producer-hour target needs validation against completed films and their rework logs.');
+ if(x.hours<16)warnings.push('This low target for producer hours needs validation against completed films and their rework logs.');
  warnings.push('Contribution is not profit: sales, management, product development, tax, and other overhead remain outside this model.');
  put('out-warning',warnings.join(' '));
  const body=document.getElementById('cost-lines');body.replaceChildren();
