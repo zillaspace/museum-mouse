@@ -42,3 +42,18 @@
 @media(max-width:390px){.mouse-study{grid-template-columns:1fr}.story-interlude{grid-template-columns:1fr}.story-interlude img{width:100px;height:100px}.map-caption .space-caption{max-width:235px}}
 @media(prefers-reduced-motion:reduce){#space-stars{transition:none}.is-playing *,.pip-scene{animation:none!important}}
 @media print{#space-stars,.pip-portrait,.mouse-sketchbook,.story-interlude img{display:none!important}.story-interlude,.closing{display:block}}
+/* Astronomical context uses the same camera as the globe. */
+#space-stars{transition:none}
+#space-bodies{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.museum-space-zoom button{font-size:24px;font-weight:bold;line-height:29px;color:#263441}
+#space-presets{position:absolute;z-index:2;top:88px;left:30px;display:flex;gap:7px;max-width:calc(100% - 105px)}
+#space-presets button{border:1px solid #42566b;border-radius:25px;background:#091421df;color:#d6e2ee;padding:8px 12px;font-size:11px;line-height:1.3}
+#space-presets button:hover{background:#20384c}
+#space-readout{position:absolute;z-index:2;bottom:43px;right:30px;max-width:270px;padding:15px 18px;background:#06101bd9;border:1px solid #32475b;border-radius:5px;color:#dbe5ef;pointer-events:auto}
+#space-readout>span{display:block;font-size:10px;line-height:1.5;color:#acbdd0}
+#space-readout strong{display:block;font-size:21px;font-weight:400;letter-spacing:-.02em;margin:4px 0 6px;font-variant-numeric:tabular-nums}
+#space-readout small{display:block;font-size:10px;line-height:1.55;margin-top:9px;color:#b9c6d4}
+#space-readout a{display:inline-block;font-size:10px;margin-top:8px;color:#d9e5ef}
+@media(max-width:1350px){#space-readout{top:134px;bottom:auto;left:30px;right:auto;padding:10px 13px;max-width:225px}#space-readout strong{font-size:17px}#space-readout small{font-size:9px}}
+@media(max-width:760px){#space-presets{top:84px;left:18px;gap:5px}#space-presets button{font-size:10px;padding:7px 10px}#space-readout{top:125px;left:18px;max-width:207px;padding:9px 12px}#space-readout strong{font-size:16px}#space-readout small{line-height:1.4}#space-readout>span{font-size:9px}#space-readout a{font-size:9px}.map-panel:has(#detail:not([hidden])) #space-readout{display:none}}
+@media print{#space-bodies,#space-presets,#space-readout{display:none!important}}

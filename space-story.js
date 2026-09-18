@@ -1,45 +1,7 @@
 /* Quiet space around the existing globe, and a closer look with Pip. */
 (function(root){
  'use strict';
- function starField(width,height){
-  let seed=19770905;
-  const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-  const count=Math.min(1100,Math.max(160,Math.round(width*height/1900)));
-  return Array.from({length:count},()=>{
-   const x=random(),y=random(),light=random(),tint=random();
-   return {x:x*width,y:y*height,r:light>.984?1.15:light>.90?.7:.25+random()*.3,
-    alpha:light>.984?.91:.15+light*.48,color:tint<.12?'193,211,255':tint>.91?'255,228,195':'231,237,247',bright:light>.984};
-  });
- }
- root.MuseumSpace={starField};
- if(typeof module!=='undefined'&&module.exports)module.exports={starField};
  if(typeof document==='undefined')return;
- root.initMuseumSpace=function(map){
-  const canvas=document.getElementById('space-stars');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');if(!ctx)return;
-  const container=canvas.parentElement;
-  function draw(){
-   const width=container.clientWidth,height=container.clientHeight;
-   if(!width||!height)return;
-   const ratio=Math.min(root.devicePixelRatio||1,2);
-   canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
-   ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-   starField(width,height).forEach(s=>{
-    if(s.bright){
-     const glow=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,3.8);
-     glow.addColorStop(0,`rgba(${s.color},.22)`);glow.addColorStop(1,`rgba(${s.color},0)`);
-     ctx.fillStyle=glow;ctx.fillRect(s.x-4,s.y-4,8,8);
-    }
-    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(${s.color},${s.alpha})`;ctx.fill();
-   });
-  }
-  function exposure(){canvas.style.opacity=String(Math.max(0,Math.min(1,(4-map.getZoom())/1.7)));}
-  const observer=typeof ResizeObserver==='function'?new ResizeObserver(draw):null;
-  observer?.observe(container);if(!observer)root.addEventListener('resize',draw);
-  map.on('zoom',exposure);draw();exposure();
-  map.on('remove',()=>{observer?.disconnect();root.removeEventListener('resize',draw);map.off('zoom',exposure);});
- };
  const scene=document.querySelector('.pip-scene'),button=document.getElementById('pip-inspect');
  const reduced=root.matchMedia('(prefers-reduced-motion: reduce)');
  if(scene&&button){
