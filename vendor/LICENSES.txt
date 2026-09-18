@@ -1,0 +1,10 @@
+MapLibre GL JS 5.6.2 — BSD 3-Clause
+https://github.com/maplibre/maplibre-gl-js/blob/v5.6.2/LICENSE.txt
+Supercluster 8.0.1 — ISC
+https://github.com/mapbox/supercluster/blob/v8.0.1/LICENSE
+
+Museum metadata attribution:
+Wikidata — CC0: https://www.wikidata.org/wiki/Wikidata:Licensing
+OpenStreetMap — © OpenStreetMap contributors; ODbL 1.0: https://www.openstreetmap.org/copyright
+
+Esri World Imagery attribution is rendered in the map; imagery is not part of the museum database download.
